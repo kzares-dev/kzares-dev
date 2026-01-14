@@ -43,7 +43,7 @@ const otherPosts = posts.slice(1);
                             </p>
                         </div>
                         <time class="text-sm opacity-75 block">
-                            {mainPost.pubDate.toLocaleDateString("es-ES")}
+                            {new Date(mainPost.pubDate).toLocaleDateString("es-ES")}
                         </time>
                     </div>
 
@@ -91,7 +91,7 @@ const otherPosts = posts.slice(1);
                                         {post.description}
                                     </p>
                                     <time class="text-xs text-white/70 mt-3 block">
-                                        {post.pubDate.toLocaleDateString("es-ES")}
+                                        {new Date(post.pubDate).toLocaleDateString("es-ES")}
                                     </time>
                                 </div>
                             </a>

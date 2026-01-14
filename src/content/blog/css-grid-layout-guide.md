@@ -4,6 +4,7 @@ description: 'Master CSS Grid for building complex, responsive layouts with ease
 slug: 'css-grid-layout-guide'
 pubDate: 'Jan 09 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
+collection: 'web-development'
 ---
 
 CSS Grid is a powerful layout system that revolutionizes how we build web layouts.

@@ -1,86 +1,183 @@
 ---
-import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
-type Props = CollectionEntry<'blog'>['data'];
-import '../styles/global.css'
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import Header from "../components/Header.astro";
+import { Calendar, ChevronRight } from "@lucide/astro";
+type Props = CollectionEntry<"blog">["data"] & { collection?: string };
+import "../styles/global.css";
+import Layout from "./Layout.astro";
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, collection } =
+	Astro.props;
+
+// Obtener la información de la colección si existe
+let collectionInfo = null;
+let relatedPosts: CollectionEntry<"blog">[] = [];
+if (collection) {
+	const collections = await getCollection("category");
+	const coll = collections.find(
+		(c) => c.id.replace(".md", "") === collection,
+	);
+	collectionInfo = coll?.data;
+
+	// Obtener otros posts de la misma colección
+	const posts = await getCollection("blog");
+	relatedPosts = posts
+		.filter(
+			(p) => p.data.collection === collection && p.id !== Astro.props.id,
+		)
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+		.slice(0, 5);
+}
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<Layout>
+	<Header />
+	<main class="min-h-screen bg-background">
+		<div class="py-12 lg:py-6">
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+				{/* Main Article */}
+				<article class="lg:col-span-2">
+					{/* Hero Image */}
+					{
+						heroImage && (
+							<div class="relative w-full h-96 sm:h-96 md:h-[500px] overflow-hidden shadow-lg mb-8 border border-border/20 group">
+								<Image
+									width={1020}
+									height={510}
+									src={heroImage}
+									alt={title}
+									class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+								/>
+								<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+							</div>
+						)
+					}
 
-	<body class="px-5 md:px-10 lg:px-20 bg-background">
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
+					{/* Content Area */}
+					<div class="prose prose-lg max-w-none">
+						{/* Collection Badge */}
+						{
+							collectionInfo && (
+								<div class="mb-6">
+									<a
+										href={`/collections/${collection}/`}
+										class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary font-semibold text-sm transition-colors duration-200"
+									>
+										<span class="w-2 h-2 rounded-full bg-primary" />
+										{collectionInfo.title}
+									</a>
+								</div>
+							)
+						}
+
+						{/* Metadata */}
+						<div class="flex flex-col sm:flex-row sm:items-center gap-4 pb-6 border-b border-border/20 mb-8">
+							<div class="flex items-center gap-3 text-muted-foreground">
+								<Calendar size={18} class="text-primary" />
+								<FormattedDate date={pubDate} />
+							</div>
 							{
 								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
+									<div class="flex items-center gap-2 text-sm text-muted-foreground pl-0 sm:pl-4 sm:border-l border-border/20">
+										<span class="text-xs uppercase tracking-wider font-semibold">Updated:</span>
+										<FormattedDate date={updatedDate} />
 									</div>
 								)
 							}
 						</div>
-						<h1>{title}</h1>
-						<hr />
+
+						{/* Title */}
+						<h1 class="text-4xl md:text-5xl font-bold mb-8 leading-tight text-foreground">
+							{title}
+						</h1>
+
+						{/* Article Content */}
+						<div class="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-code:bg-card/50 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-img:rounded-lg prose-img:shadow-md">
+							<slot />
+						</div>
 					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+				</article>
+
+				<aside class="lg:col-span-1">
+					<div class="space-y-6 sticky top-24">
+						{/* Related Posts Card */}
+						{
+							relatedPosts.length > 0 && (
+								<div class="bg-card/50 border border-border/20 p-6  hover:shadow-md transition-shadow duration-300">
+									<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+										<span class="w-1 h-6 bg-primary rounded-full" />
+										More from this collection
+									</h3>
+									<div class="space-y-3">
+										{relatedPosts.map((post) => (
+											<a
+												href={`/blog/${post.id}/`}
+												class="group flex items-start gap-3 p-3 rounded-lg hover:bg-primary/10 transition-all duration-200"
+											>
+												<div class="flex-shrink-0 mt-1 text-primary group-hover:translate-x-1 transition-transform duration-200">
+													<ChevronRight size={18} />
+												</div>
+												<div class="flex-1 min-w-0">
+													<div class="font-semibold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2 text-sm">
+														{post.data.title}
+													</div>
+													<div class="text-xs text-muted-foreground mt-1">
+														{new Date(
+															post.data.pubDate,
+														).toLocaleDateString("en-US", {
+															month: "short",
+															day: "numeric",
+														})}
+													</div>
+												</div>
+											</a>
+										))}
+									</div>
+								</div>
+							)
+						}
+
+						{/* Collection Info Card */}
+						{
+							collectionInfo && (
+								<div class="bg-card/50 border border-border/20 p-6  hover:shadow-md transition-shadow duration-300">
+									<div class="flex items-center gap-2 mb-4">
+										<span class="w-1 h-6 bg-primary rounded-full" />
+										<h3 class="text-lg font-bold">{collectionInfo.title}</h3>
+									</div>
+									<p class="text-sm text-muted-foreground leading-relaxed mb-4">
+										{collectionInfo.description}
+									</p>
+									<a
+										href={`/collections/${collection}/`}
+										class="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all duration-200 group"
+									>
+										View all articles
+										<ChevronRight size={16} class="group-hover:translate-x-1 transition-transform duration-200" />
+									</a>
+								</div>
+							)
+						}
+
+						{/* Share Section */}
+						<div class="bg-gradient-to-br from-primary/10 to-primary/5 p-6 text-center">
+							<p class="text-sm font-semibold text-foreground mb-3">
+								Found this helpful?
+							</p>
+							<p class="text-xs text-muted-foreground">
+								Share this article with your network
+							</p>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</main>
+
+	<Footer />
+</Layout>

@@ -4,6 +4,7 @@ description: 'Implement effective Git workflows for team collaboration and code 
 slug: 'git-workflow-best-practices'
 pubDate: 'Jan 08 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
+collection: 'web-development'
 ---
 
 Effective Git workflows are essential for team collaboration. Let's explore best practices.

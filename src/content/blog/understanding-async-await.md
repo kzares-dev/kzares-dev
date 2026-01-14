@@ -4,6 +4,7 @@ description: 'Master asynchronous programming with async/await and promises.'
 slug: 'understanding-async-await'
 pubDate: 'Jan 11 2025'
 heroImage: '../../assets/blog-placeholder-5.jpg'
+collection: 'javascript'
 ---
 
 Asynchronous programming is fundamental to modern JavaScript. Async/await provides a cleaner syntax for working with promises.

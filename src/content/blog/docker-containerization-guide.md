@@ -4,6 +4,7 @@ description: 'Learn Docker fundamentals and containerize your applications for c
 slug: 'docker-containerization-guide'
 pubDate: 'Jan 06 2025'
 heroImage: '../../assets/blog-placeholder-5.jpg'
+collection: 'devops'
 ---
 
 Docker revolutionizes how applications are deployed. Let's explore containerization.

@@ -4,6 +4,7 @@ description: 'Build server-side applications with Node.js and understand its eve
 slug: 'intro-to-nodejs'
 pubDate: 'Jan 10 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
+collection: 'developing-backend-services'
 ---
 
 Node.js allows you to run JavaScript on the server side. Let's explore how to get started.

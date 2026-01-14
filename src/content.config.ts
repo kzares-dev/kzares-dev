@@ -9,11 +9,23 @@ const blog = defineCollection({
 		z.object({
 			title: z.string(),
 			description: z.string(),
-			// Transform string to Date object
+			slug: z.string(),
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
+			collection: z.string(), 
 			heroImage: image().optional(),
 		}),
 });
 
-export const collections = { blog };
+const category = defineCollection({
+	loader: glob({ base: './src/content/category', pattern: '**/*.md' }),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			slug: z.string(),
+			image: image().optional(),
+		}),
+});
+
+export const collections = { blog, category };

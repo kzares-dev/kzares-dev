@@ -1,45 +1,61 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
 import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import Layout from "../../layouts/Layout.astro";
+import CollectionSection from "../../components/CollectionSection.astro";
 
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const collections = (await getCollection("category")).sort(
+	(a, b) => a.data.title.localeCompare(b.data.title),
+);
+
+// Agrupar posts por colección
+const postsByCollection = new Map();
+for (const collection of collections) {
+	const collectionId = collection.id.replace('.md', '');
+	postsByCollection.set(collectionId, posts.filter(p => p.data.collection === collectionId));
+}
 ---
 
 <Layout>
 	<Header />
 	<main>
-		<section>
-			<ul>
-				{
-					posts.map((post) => (
-						<li>
-							<a href={`/blog/${post.id}/`}>
-								{post.data.heroImage && (
-									<Image
-										width={720}
-										height={360}
-										src={post.data.heroImage}
-										alt=""
-									/>
-								)}
-								<h4 class="title">{post.data.title}</h4>
-								<p class="date">
-									<FormattedDate date={post.data.pubDate} />
-								</p>
-							</a>
-						</li>
-					))
-				}
-			</ul>
-		</section>
+		<div class="blog-header">
+			<h1>Blog</h1>
+			<p>Últimos artículos</p>
+		</div>
+		{
+			collections.map((collection) => {
+				const collectionId = collection.id.replace('.md', '');
+				const collectionPosts = postsByCollection.get(collectionId) || [];
+				return (
+					<CollectionSection collection={collection} posts={collectionPosts} />
+				);
+			})
+		}
 	</main>
 	<Footer />
 </Layout>
+
+<style>
+	.blog-header {
+		text-align: center;
+		margin-bottom: 3rem;
+		padding: 2rem 0;
+	}
+
+	.blog-header h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.blog-header p {
+		font-size: 1.1rem;
+		color: #666;
+	}
+</style>

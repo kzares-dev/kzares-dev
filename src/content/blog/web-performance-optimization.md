@@ -4,6 +4,7 @@ description: 'Essential techniques for optimizing your web applications for spee
 slug: 'web-performance-optimization'
 pubDate: 'Jan 13 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
+collection: 'web-development'
 ---
 
 Web performance is crucial for user experience and SEO. In this article, we'll explore key optimization techniques.

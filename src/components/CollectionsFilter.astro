@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	collections: CollectionEntry<"category">[];
+	selectedCollection?: string;
+	baseUrl?: string;
+}
+
+const { collections, selectedCollection, baseUrl = "/collections" } = Astro.props;
+---
+
+<aside class="w-full bg-card p-2 py-5 shadow-sm">
+	<ul class="space-y-4">
+		<li >
+			<a 
+				href={`${baseUrl}/`}
+				class={!selectedCollection ? "w-full bg-primary p-2" : "w-full p-2 hover:bg-primary/60 text-lg italic"}
+			>
+				All
+			</a>
+		</li>
+		{
+			collections.map((collection) => {
+				const collectionId = collection.id.replace('.md', '');
+				const isActive = selectedCollection === collectionId;
+				return (
+					<li class={isActive ? "w-full bg-primary p-2" : "p-2 w-full hover:bg-primary/60 text-lg italic"}>
+						<a 
+							href={`${baseUrl}/${collectionId}/`}
+						>
+							{collection.data.title}
+						</a>
+					</li>
+				);
+			})
+		}
+	</ul>
+</aside>

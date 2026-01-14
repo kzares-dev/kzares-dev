@@ -1,0 +1,111 @@
+---
+import { getCollection } from "astro:content";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import Layout from "../../layouts/Layout.astro";
+import CollectionSection from "../../components/CollectionSection.astro";
+import { ChevronRight, BookOpen } from "@lucide/astro";
+
+export async function getStaticPaths() {
+	const collections = await getCollection("category");
+	return collections.map((collection) => ({
+		params: { slug: collection.id.replace('.md', '') },
+		props: { collection },
+	}));
+}
+
+const { collection } = Astro.props;
+const { slug } = Astro.params;
+
+const posts = (await getCollection("blog"))
+	.filter(p => p.data.collection === slug)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const collections = (await getCollection("category")).sort(
+	(a, b) => a.data.title.localeCompare(b.data.title),
+);
+---
+
+<Layout>
+	<Header />
+
+	<div class="relative bg-gradient-to-br from-[rgb(245,175,175)] via-[rgb(235,150,150)] to-[rgb(220,100,100)] overflow-hidden py-20 mb-12">
+		<div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-40 -mt-40"></div>
+		<div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -ml-32 -mb-32"></div>
+		
+		{/* Content */}
+		<div class="max-w-7xl mx-auto px-4 relative z-10">
+			<div class="flex items-start gap-6 mb-6">
+				<div class="p-4 bg-white/20 rounded-xl backdrop-blur-sm">
+					<BookOpen size={32} class="text-white" />
+				</div>
+				<div>
+					<div class="inline-block px-3 py-1 bg-white/20 rounded-full backdrop-blur-sm mb-4">
+						<span class="text-sm font-semibold text-white">Collection</span>
+					</div>
+				</div>
+			</div>
+			
+			<h1 class="text-5xl sm:text-7xl font-black text-white mb-4 leading-tight">{collection.data.title}</h1>
+			
+			<p class="text-white/80 text-lg max-w-3xl mb-6 leading-relaxed">{collection.data.description}</p>
+			
+			<div class="flex flex-wrap items-center gap-6 pt-6 border-t border-white/20">
+				<div class="flex items-center gap-2">
+					<div class="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center text-white font-bold text-sm">
+						{posts.length}
+					</div>
+					<span class="text-white/90 font-semibold">
+						{posts.length === 1 ? "Article" : "Articles"}
+					</span>
+				</div>
+				<div class="h-6 w-px bg-white/20"></div>
+				<span class="text-white/70 text-sm">
+					Last updated: {new Date(posts[0]?.data.pubDate || new Date()).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<main class="px-4 pb-12">
+		<div class="grid grid-cols-1 lg:grid-cols-[450px_1fr] gap-8">
+			{/* Sidebar - Posts list */}
+			<aside class="lg:sticky lg:top-8 h-fit">
+				<div class="bg-card p-6 shadow-sm">
+					<h3 class="text-lg font-bold text-gray-900 mb-4">Articles in this collection</h3>
+					<div class="space-y-2 max-h-[600px] overflow-y-auto">
+						{posts.map((post, idx) => (
+							<a
+								href={`/blog/${post.id}/`}
+								class="group flex items-start gap-3 p-3 rounded-lg hover:bg-[rgb(245,175,175)] transition-colors"
+								title={post.data.title}
+							>
+								<div class="flex-shrink-0 w-5 h-5 rounded bg-[rgb(245,175,175)] flex items-center justify-center mt-0.5 group-hover:bg-[rgb(220,100,100)] transition-colors">
+									<span class="text-white text-xs font-bold">{idx + 1}</span>
+								</div>
+								<div class="flex-1 min-w-0">
+									<p class="text-sm font-medium text-gray-900 line-clamp-2 group-hover:text-[rgb(220,100,100)] transition-colors">
+										{post.data.title}
+									</p>
+									<p class="text-xs text-gray-500 mt-1">
+										{new Date(post.data.pubDate).toLocaleDateString("en-US", {
+											month: "short",
+											day: "numeric"
+										})}
+									</p>
+								</div>
+								<ChevronRight size={16} class="flex-shrink-0 text-gray-400 group-hover:text-[rgb(220,100,100)] transition-colors mt-1" />
+							</a>
+						))}
+					</div>
+				</div>
+			</aside>
+
+			<div class="min-h-screen">
+				<CollectionSection collection={collection} posts={posts} />
+			</div>
+		</div>
+	</main>
+
+	<Footer />
+</Layout>

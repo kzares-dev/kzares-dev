@@ -4,6 +4,7 @@ description: 'Learn how to write effective tests for your JavaScript application
 slug: 'testing-javascript-applications'
 pubDate: 'Jan 07 2025'
 heroImage: '../../assets/blog-placeholder-4.jpg'
+collection: 'javascript'
 ---
 
 Testing is crucial for building reliable applications. Let's explore testing best practices.

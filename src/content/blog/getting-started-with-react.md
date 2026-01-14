@@ -4,6 +4,7 @@ description: 'A comprehensive guide to building your first React application wit
 slug: 'getting-started-with-react'
 pubDate: 'Jan 15 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
+collection: 'javascript'
 ---
 
 React has become one of the most popular JavaScript libraries for building user interfaces. In this guide, we'll explore the fundamentals of React and how to build your first component.

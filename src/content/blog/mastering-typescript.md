@@ -4,6 +4,7 @@ description: 'Learn advanced TypeScript patterns and best practices for building
 slug: 'mastering-typescript'
 pubDate: 'Jan 14 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
+collection: 'javascript'
 ---
 
 TypeScript has revolutionized how we write JavaScript, providing static typing and advanced tooling. Let's explore how to master this powerful language.

@@ -8,14 +8,14 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<div class="relative w-full mt-10">
+<div class="relative w-full">
 	{/* Columns Container - Responsive grid */}
 	<div class="columns-1 sm:columns-2 lg:columns-3 gap-3">
 		{
 			posts.map((post, index) => (
 				<a
 					href={`/blog/${post.slug}`}
-					class="group relative shadow transition-all duration-300 h-130 rounded-t-lg overflow-hidden mb-3 break-inside-avoid block"
+					class="group relative shadow transition-all duration-300 h-110 rounded-t-lg overflow-hidden mb-3 break-inside-avoid block"
 				>
 					{/* Background Image */}
 					{post.heroImage && (
@@ -41,7 +41,7 @@ const { posts } = Astro.props;
 							{post.description}
 						</p>
 						<time class="opacity-75 mt-2 block">
-							{post.pubDate.toLocaleDateString("es-ES")}
+							{new Date(post.pubDate).toLocaleDateString("es-ES")}
 						</time>
 					</div>
 				</a>
