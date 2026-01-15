@@ -25,26 +25,32 @@ for (const collection of collections) {
 }
 
 // Color gradients for collections using design system palette
-const gradients = [
-	"",
-];
+const gradients = [""];
 
 const getGradient = (index: number) => gradients[index % gradients.length];
 ---
 
 <Layout>
 	<Header />
-	<main class="max-w-7xl mx-auto px-4 py-12">
+	<main class="max-w-7xl mx-auto px-4 py-5">
 		<div class="mb-16 text-center">
-			<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(251,239,239)] mb-4">
+			<div
+				class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(251,239,239)] mb-4"
+			>
 				<Folder size={18} class="text-[rgb(245,175,175)]" />
-				<span class="text-sm font-semibold text-[rgb(245,175,175)]">Collections</span>
+				<span class="text-sm font-semibold text-[rgb(245,175,175)]"
+					>Collections</span
+				>
 			</div>
 			<h1 class="text-5xl sm:text-6xl font-bold mb-4 leading-tight">
-				Browse by <span class="bg-gradient-to-r from-[rgb(245,175,175)] to-[rgb(220,100,100)] bg-clip-text text-transparent">Category</span>
+				Browse by <span
+					class="bg-gradient-to-r from-[rgb(245,175,175)] to-[rgb(220,100,100)] bg-clip-text text-transparent"
+					>Category</span
+				>
 			</h1>
 			<p class="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
-				Explore our content organized by topics to find exactly what you're looking for
+				Explore our content organized by topics to find exactly what
+				you're looking for
 			</p>
 			<div
 				class="flex flex-row gap-2 items-center bg-card px-4 rounded-full h-12 max-w-[500px] w-full mx-auto hover:border-[rgb(220,100,100)] transition-colors"
@@ -68,34 +74,57 @@ const getGradient = (index: number) => gradients[index % gradients.length];
 						postsByCollection.get(collectionId) || [];
 
 					return (
-						<a
-							href={`/collections/${collectionId}/`}
-							class={`group relative bg-card overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between p-8 text-stone-800 min-h-84`}
-						>
-							{/* Background accent */}
-							<div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300"></div>
+						<div class="relative h-130  -mb-10">
+							
+							<a
+								href={`/collections/${collectionId}/`}
+								class={`group relative bg-card z-11 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between p-8 text-stone-800 min-h-84`}
+							>
+								{/* Background accent */}
+								<div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-300" />
 
-							<div class="relative z-10">
-								<h2 class="text-3xl font-bold mb-3  italic text-[rgb(220,100,100)]">
-									{collection.data.title}
-								</h2>
-								<p class="text-stone-900/90">
-									{collection.data.description}
-								</p>
-							</div>
+								<div class="relative z-10">
+									<h2 class="text-3xl font-bold mb-3  italic text-[rgb(220,100,100)]">
+										{collection.data.title}
+									</h2>
+									<p class="text-stone-900/90">
+										{collection.data.description}
+									</p>
+								</div>
 
-							<div class="relative z-10 flex items-center justify-between pt-6 border-t border-stone-800/20">
-								<div class="text-sm font-semibold text-stone-900">
-									<span class="font-bold text-lg">{collectionPosts.length}</span>
-									<span class="text-stone-900/80 ml-1">
-										{collectionPosts.length === 1 ? "article" : "articles"}
-									</span>
+								<div class="relative z-10 flex items-center justify-between pt-6 border-t border-stone-800/20">
+									<div class="text-sm font-semibold text-stone-900">
+										<span class="font-bold text-lg">
+											{collectionPosts.length}
+										</span>
+										<span class="text-stone-900/80 ml-1">
+											{collectionPosts.length === 1
+												? "article"
+												: "articles"}
+										</span>
+									</div>
+									<div class="group-hover:translate-x-1 transition-transform duration-300">
+										<ArrowRight
+											size={20}
+											class="text-stone-900"
+										/>
+									</div>
 								</div>
-								<div class="group-hover:translate-x-1 transition-transform duration-300">
-									<ArrowRight size={20} class="text-stone-900" />
-								</div>
+							</a>
+
+							<div class="flex flex-col bg-primary/70 p-4 space-y-2">
+								{collectionPosts
+									.slice(0, 4)
+									.map((post: any, idx: number) => (
+										<div
+											class="w-full text-sm font-bold"
+										>
+											{post.data.title}
+										</div>
+									))}
 							</div>
-						</a>
+						</div>
+
 					);
 				})
 			}
