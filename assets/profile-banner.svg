@@ -15,7 +15,7 @@
 	<line x1="110" y1="286" x2="1090" y2="286" stroke="#9a3f2f" stroke-width="5"/>
 	<text x="600" y="138" text-anchor="middle" fill="#f4dfb8" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700" letter-spacing="4">KZARES</text>
 	<text x="600" y="190" text-anchor="middle" fill="#d3b276" font-family="'Courier New', monospace" font-size="24" letter-spacing="6">FULL-STACK DEVELOPER</text>
-	<text x="600" y="230" text-anchor="middle" fill="#f4dfb8" font-family="'Courier New', monospace" font-size="19" letter-spacing="3">PROBLEM SOLVER BY NATURE | SOFTWARE DEVELOPER BY PROFESSION</text>
+	<text x="600" y="244" text-anchor="middle" fill="#f4dfb8" font-family="'Courier New', monospace" font-size="19" letter-spacing="3">PROBLEM SOLVER BY NATURE | SOFTWARE DEVELOPER BY PROFESSION</text>
 	<circle cx="183" cy="180" r="42" fill="none" stroke="#b6843f" stroke-width="8"/>
 	<circle cx="183" cy="180" r="12" fill="#050403" stroke="#f4dfb8" stroke-width="4"/>
 	<circle cx="1017" cy="180" r="42" fill="none" stroke="#b6843f" stroke-width="8"/>
