@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="72" viewBox="0 0 1200 72" role="img" aria-label="Film divider">
+	<rect width="1200" height="72" fill="#050403"/>
+	<path d="M0 3H1200M0 69H1200" stroke="#b6843f" stroke-width="4"/>
+	<g fill="#f4dfb8" opacity="0.85">
+		<rect x="20" y="18" width="26" height="36" rx="5"/>
+		<rect x="82" y="18" width="26" height="36" rx="5"/>
+		<rect x="144" y="18" width="26" height="36" rx="5"/>
+		<rect x="206" y="18" width="26" height="36" rx="5"/>
+		<rect x="268" y="18" width="26" height="36" rx="5"/>
+		<rect x="330" y="18" width="26" height="36" rx="5"/>
+		<rect x="392" y="18" width="26" height="36" rx="5"/>
+		<rect x="454" y="18" width="26" height="36" rx="5"/>
+		<rect x="516" y="18" width="26" height="36" rx="5"/>
+		<rect x="578" y="18" width="26" height="36" rx="5"/>
+		<rect x="640" y="18" width="26" height="36" rx="5"/>
+		<rect x="702" y="18" width="26" height="36" rx="5"/>
+		<rect x="764" y="18" width="26" height="36" rx="5"/>
+		<rect x="826" y="18" width="26" height="36" rx="5"/>
+		<rect x="888" y="18" width="26" height="36" rx="5"/>
+		<rect x="950" y="18" width="26" height="36" rx="5"/>
+		<rect x="1012" y="18" width="26" height="36" rx="5"/>
+		<rect x="1074" y="18" width="26" height="36" rx="5"/>
+		<rect x="1136" y="18" width="26" height="36" rx="5"/>
+	</g>
+</svg>
