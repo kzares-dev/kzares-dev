@@ -33,29 +33,6 @@ I build web and mobile products with React, Next.js, Astro, React Native, Node.j
 
 <img src="./assets/film-divider.svg" alt="" width="100%" />
 
-## Main Reel
-
-| Role | What I bring |
-| --- | --- |
-| **Full Stack Developer** | Frontend, backend, APIs, data models, integrations, and deployment. |
-| **React Developer** | Interfaces with React, Next.js, Astro, Tailwind CSS, Vite, and React Native. |
-| **Node.js Developer** | Services with Node.js, NestJS, Express, GraphQL, REST APIs, and WebSockets. |
-| **Technical Lead** | Product delivery, architecture decisions, team alignment, and ownership from idea to release. |
-
-### [nodes-connector](https://github.com/kzares-dev/nodes-connector)
-
-An npm package for editable node boards, geometric nodes, and many-to-many connectors with framework-agnostic core logic and React bindings.
-
-### [Retro Theater Portfolio](https://kzares-dev.github.io/)
-
-A movie-theater inspired developer portfolio built with Astro, React, Tailwind CSS, content collections, SEO metadata, and language detection.
-
-### [Kzares Blog](https://kzares-dev.github.io/kzares-blog/)
-
-My technical blog, deployed with GitHub Pages.
-
-<img src="./assets/film-divider.svg" alt="" width="100%" />
-
 ## Technical Cast
 
 ```txt
