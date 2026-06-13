@@ -7,7 +7,7 @@
     <img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-kzares.dev-f4dfb8?style=for-the-badge&labelColor=050403&color=b6843f" />
   </a>
   <a href="https://kzares-dev.github.io/kzares-blog/">
-    <img alt="Blog" src="https://img.shields.io/badge/Blog-now_showing-f4dfb8?style=for-the-badge&labelColor=050403&color=9a3f2f" />
+    <img alt="Blog" src="https://img.shields.io/badge/Blog-technical_notes-f4dfb8?style=for-the-badge&labelColor=050403&color=9a3f2f" />
   </a>
   <a href="https://www.linkedin.com/in/jkzares">
     <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-jkzares-f4dfb8?style=for-the-badge&labelColor=050403&color=263631" />
@@ -27,34 +27,32 @@
 
 ## Prologue
 
-I am **Jorge Casares**, also building as **Kzares**: a full-stack developer based in Brazil, focused on technical leadership, product delivery, resilient frontend systems, backend services, automation, and practical developer tooling.
+I am **Jorge Casares**, also building as **Kzares**: a **Full Stack Developer** based in Brazil.
 
-My work sits between product direction and engineering execution: I clarify scope, design systems that can ship, lead implementation, and help teams move from ambiguity to working software.
+I build web and mobile products with React, Next.js, Astro, React Native, Node.js, NestJS, and TypeScript. I care about clean execution, strong ownership, practical architecture, and shipping software that works.
 
-## Now Showing
+<img src="./assets/film-divider.svg" alt="" width="100%" />
 
-| Reel | Focus |
+## Main Reel
+
+| Role | What I bring |
 | --- | --- |
-| **Technical Leadership** | Aligning teams, shaping architecture, and keeping delivery grounded in product outcomes. |
-| **Frontend Systems** | React, Next.js, Astro, Tailwind CSS, Vite, React Native, and Expo. |
-| **Backend Services** | Node.js, NestJS, Express, GraphQL, REST APIs, WebSockets, PostgreSQL, MongoDB, Redis, Docker, Nginx, AWS, and GCP. |
-| **Automation & Tooling** | Internal tools, CI/CD, Codex, Claude Code, MCP servers, and workflow automation when it improves delivery. |
-
-## Featured Screening
+| **Full Stack Developer** | Frontend, backend, APIs, data models, integrations, and deployment. |
+| **React Developer** | Interfaces with React, Next.js, Astro, Tailwind CSS, Vite, and React Native. |
+| **Node.js Developer** | Services with Node.js, NestJS, Express, GraphQL, REST APIs, and WebSockets. |
+| **Technical Lead** | Product delivery, architecture decisions, team alignment, and ownership from idea to release. |
 
 ### [nodes-connector](https://github.com/kzares-dev/nodes-connector)
 
 An npm package for editable node boards, geometric nodes, and many-to-many connectors with framework-agnostic core logic and React bindings.
 
-**Relevant links:** [Docs](https://kzares-dev.github.io/nodes-connector/) · [npm](https://www.npmjs.com/package/nodes-connector) · [Repository](https://github.com/kzares-dev/nodes-connector)
-
 ### [Retro Theater Portfolio](https://kzares-dev.github.io/)
 
-A portfolio built with Astro, React, Tailwind CSS, content collections, SEO metadata, language detection, and a movie-theater visual system inspired by film reels, countdown leaders, and cassette screenings.
+A movie-theater inspired developer portfolio built with Astro, React, Tailwind CSS, content collections, SEO metadata, and language detection.
 
 ### [Kzares Blog](https://kzares-dev.github.io/kzares-blog/)
 
-My technical blog, split into its own repository and deployed through GitHub Pages.
+My technical blog, deployed with GitHub Pages.
 
 <img src="./assets/film-divider.svg" alt="" width="100%" />
 
@@ -69,7 +67,6 @@ APIs           GraphQL, REST, WebSockets
 Data           PostgreSQL, MongoDB, Redis
 Infra          Docker, Nginx, AWS, GCP, CI/CD
 Leadership     System design, technical planning, product delivery, team alignment
-Tooling        Codex, Claude Code, MCP servers, automation
 ```
 
 ## Contact
